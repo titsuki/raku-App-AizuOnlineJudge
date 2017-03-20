@@ -51,7 +51,7 @@ method ask-result($user, $send-time) returns Str {
         my $status-response = $!ua.get($!activity-uri);
         next if not $status-response.is-success;
 
-        my %latest = self.get-latest-activity($status-response);
+        my %latest = self.get-latest-activity($status-response.content);
         if %latest<submission-date> >= $send-time {
             return sprintf("%s %.2f sec", [%latest<status>, %latest<cputime> / 100]);
         }
