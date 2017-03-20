@@ -64,7 +64,7 @@ method ask-result($user, $lesson-id, $send-time) returns Str {
     }
 }
 
-method get-latest-activity($xml-text is copy) returns Hash {
+method get-latest-activity(Str $xml-text is copy) returns Hash {
     $xml-text .= subst(/\n/, :g, "");
     my $xml = from-xml($xml-text);
     my @status-list = <CompileError WrongAnswer TimeLimitExceeded MemoryLimitExceeded Accepted OutputLimitExceeded RuntimeError PresentationError>;

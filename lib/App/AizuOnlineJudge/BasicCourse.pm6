@@ -62,7 +62,7 @@ method ask-result($user, $send-time) returns Str {
     }
 }
 
-method get-latest-activity($xml-text is copy) returns Hash {
+method get-latest-activity(Str $xml-text is copy) returns Hash {
     $xml-text .= subst(/\n/, :g, "");
     my $xml = from-xml($xml-text);
     my DateTime $submission-date .= new($xml[0].elements(:TAG('submission_date'), :SINGLE).contents.shift.text.Int / 1000);
