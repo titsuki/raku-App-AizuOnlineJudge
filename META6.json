@@ -23,5 +23,5 @@
   "source-url" : "git://github.com/titsuki/p6-App-AizuOnlineJudge.git",
   "tags" : [ ],
   "test-depends" : [ ],
-  "version" : "*"
+  "version" : "1.001001"
 }
