@@ -18,7 +18,7 @@ has $.lesson-id;
 has $.language;
 has %!form;
 
-submethod BUILD(:$!code, :$!problem-number, :$!user, :$!lesson-id, :$!language) {
+submethod BUILD(:$!code, :$!problem-number, :$!user, :$!lesson-id, :$!language, Bool :$mockable = False) {
     self.validate-code($!code);
     self.validate-language($!language);
     self.validate-problem-number($!problem-number);
@@ -27,7 +27,7 @@ submethod BUILD(:$!code, :$!problem-number, :$!user, :$!lesson-id, :$!language) 
     $!activity-uri = URI.new("http://judge.u-aizu.ac.jp/onlinejudge/webservice/lesson_submission_log?user_id=$!user&lesson_id=$!lesson-id");
     %!form := {
         userID => $!user,
-        password => self.get-password,
+        password => self.get-password(:$mockable),
         problemNO => $!problem-number,
         lessonID => $!lesson-id,
         language => $!language,

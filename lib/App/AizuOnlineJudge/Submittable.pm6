@@ -1,9 +1,13 @@
 use v6;
+use Terminal::Getpass;
 unit role App::AizuOnlineJudge::Submittable;
 
-method get-password() returns Str {
-    shell "stty -echo"; my $password = prompt("password: "); "".say; shell "stty echo";
-    return $password;
+method get-password(Bool :$mockable = False, Str :$mockpass = "mockpass" --> Str) {
+    if $mockable {
+       $mockpass;
+    } else {
+       getpass;
+    }
 }
 
 method validate-code(Str $code) returns Bool {
