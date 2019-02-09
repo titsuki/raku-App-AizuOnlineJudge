@@ -6,7 +6,8 @@
   "depends" : [
     "URI",
     "XML",
-    "HTTP::UserAgent"
+    "HTTP::UserAgent",
+    "Terminal::Getpass"
   ],
   "description" : "a perl6 implementation of the unofficial code submitter for Aizu Online Judge( http://judge.u-aizu.ac.jp/onlinejudge/index.jsp ).",
   "license" : "Artistic-2.0",
