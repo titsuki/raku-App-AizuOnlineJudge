@@ -5,8 +5,7 @@
   "build-depends" : [ ],
   "depends" : [
     "URI",
-    "XML",
-    "HTTP::UserAgent",
+    "cro",
     "Terminal::Getpass"
   ],
   "description" : "a perl6 implementation of the unofficial code submitter for Aizu Online Judge( http://judge.u-aizu.ac.jp/onlinejudge/index.jsp ).",

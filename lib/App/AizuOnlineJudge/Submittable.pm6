@@ -1,6 +1,87 @@
 use v6;
 use Terminal::Getpass;
+use Cro::HTTP::Client;
+use URI;
+use OO::Monitors;
+use MONKEY-TYPING;
+
 unit role App::AizuOnlineJudge::Submittable;
+
+has Cro::HTTP::Cookie $!cookie;
+has Cro::HTTP::Client $!client;
+
+method is-login(--> Bool) {
+    return False without $!cookie;
+    my $uri = Cro::Uri.parse('https://judgeapi.u-aizu.ac.jp');
+    my $client = Cro::HTTP::Client.new(base-uri => $uri);
+    my $response = await $client.get('/self',
+                                     cookies => {
+                                            $!cookie.name => $!cookie.value
+                                        }
+                                    );
+    $response.say;
+    $response.status == 200
+}
+
+method login(Str :$user!, Str :$password! --> Bool) {
+    return True if self.is-login;
+
+    my $uri = Cro::Uri.parse('https://judgeapi.u-aizu.ac.jp');
+    $!client = Cro::HTTP::Client.new(base-uri => $uri, body-serializers => [ Cro::HTTP::BodySerializer::JSON ]);
+    my %data = %(
+        id => $user,
+        password => $password
+    );
+    my $response = await $!client.post('/session', body => %data, content-type => 'application/json');
+    my $cookie-value = $response.headers.grep({ .name.lc eq 'set-cookie' }).map({ .value }).list.head;
+    {
+        use Cro::HTTP::Cookie;
+
+        my regex cookie-name { <[\x1F..\xFF] - [() \< \> @,;: \\ \x22 /\[\] ?={} \x20 \x1F \x7F]>+ };
+
+        my regex octet { <[\x21
+                  \x23..\x2B
+                  \x2D..\x3A
+                  \x3C..\x5B
+                  \x5D..\x7E]>*};
+        my regex cookie-value { [ <octet> || '("' <octet> '")' ] };
+
+        my regex name  { <[\w\d]> (<[\w\d-]>* <[\w\d]>)* };
+        # In Domain regex first dot comes from
+        # RFC 6265 and is intended to be ignored.
+        my regex domain { '.'? (<name> ['.'<name>]*) }
+
+        my regex path { <[\x1F..\xFF] - [;]>+ }
+
+        my grammar MyCookieString {
+            token TOP          { <cookie-pair> [';' <cookie-av> ]* }
+            token cookie-pair  { <cookie-name> '=' <cookie-value> }
+            proto token cookie-av {*}
+            token cookie-av:sym<expires>   { :i 'Expires=' [ <dt=DateTime::Parse::Grammar::rfc1123-date>    |
+                                                             <dt=DateTime::Parse::Grammar::rfc850-date>     |
+                                                             <dt=DateTime::Parse::Grammar::rfc850-var-date> |
+                                                             <dt=DateTime::Parse::Grammar::asctime-date>    ] }
+            token cookie-av:sym<max-age>   { :i 'Max-Age=' '-'? <[1..9]> <[0..9]>* }
+            token cookie-av:sym<domain>    { :i 'Domain=' <domain> }
+            token cookie-av:sym<path>      { :i 'Path=' <path> }
+            token cookie-av:sym<secure>    { :i 'Secure' }
+            token cookie-av:sym<httponly>  { :i 'HttpOnly' }
+            token cookie-av:sym<extension> { :i <path> }
+        }
+        $!cookie = MyCookieString.parse($cookie-value, :actions(CookieBuilder.new)).made;
+    }
+    $response.status == 200;
+}
+
+method post-code(:%form! --> Str) {
+    my $response = await $!client.post('/submissions', body => %form,
+                                       cookies => {
+                                              $!cookie.name => $!cookie.value
+                                          },
+                                       content-type => 'application/json',
+                                      );
+    self.response-to-p6hash($response)<token>;
+}
 
 method get-password(Bool :$mockable = False, Str :$mockpass = "mockpass" --> Str) {
     if $mockable {
@@ -24,17 +105,12 @@ method validate-language(Str $language) returns Bool {
     return True;
 }
 
-method validate-response($response) returns Bool {
-    if not $response.is-success {
+method response-to-p6hash(Cro::HTTP::Response $response --> Hash) {
+    if $response.status != 200 {
         die "ERROR: Failed in sending your code.";
-    } elsif $response.content ~~ m/'<succeeded>false</succeeded>'/ {
-        if $response.content ~~ m/'<message>' (.+) '</message>'/ {
-            die "ERROR: $0";
-        } else {
-            die "ERROR: Failed in sending your code.";
-        }
     }
-    return True;
+    use JSON::Fast;
+    from-json(await $response.body-text);
 }
 
 method wait(Int:D $try-count) {
