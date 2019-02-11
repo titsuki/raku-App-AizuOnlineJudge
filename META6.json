@@ -5,7 +5,7 @@
   "build-depends" : [ ],
   "depends" : [
     "URI",
-    "XML",
+    "cro",
     "HTTP::UserAgent",
     "Terminal::Getpass"
   ],
