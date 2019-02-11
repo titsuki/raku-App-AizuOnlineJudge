@@ -95,14 +95,14 @@ method validate-code(Str $code) returns Bool {
     if not $code.IO.f {
         die "ERROR: Couldn't find your code";
     }
-    return True;
+    True;
 }
 
 method validate-language(Str $language) returns Bool {
     if <C C++ C++11 C# D Ruby Python Python3 PHP JavaScript Scala Haskell OCaml>.grep(* eq $language) == 0 {
         die "ERROR: $language is not an acceptable language";
     }
-    return True;
+    True;
 }
 
 method response-to-p6hash(Cro::HTTP::Response $response --> Hash) {
