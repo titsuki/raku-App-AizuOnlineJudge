@@ -35,7 +35,7 @@ method run {
     self.ask-result($token).say;
 }
 
-method ask-result($token) returns Str {
+method ask-result($token --> Str) {
     my Bool $success = False;
     loop (my $try-count = 1; $try-count <= 5; $try-count++) {
         self.wait($try-count);
@@ -64,7 +64,7 @@ method get-latest-by-token(Str:D $json-text, Str:D $token --> Hash) {
     return %latest;
 }
 
-method validate-problem-number($problem-number) returns Bool {
+method validate-problem-number($problem-number --> Bool) {
     if $problem-number.chars != 4 {
         die "ERROR: Invalid problem-number was specified";
     }

@@ -91,14 +91,14 @@ method get-password(Bool :$mockable = False, Str :$mockpass = "mockpass" --> Str
     }
 }
 
-method validate-code(Str $code) returns Bool {
+method validate-code(Str $code --> Bool) {
     if not $code.IO.f {
         die "ERROR: Couldn't find your code";
     }
     True;
 }
 
-method validate-language(Str $language) returns Bool {
+method validate-language(Str $language --> Bool) {
     if <C C++ C++11 C# D Ruby Python Python3 PHP JavaScript Scala Haskell OCaml>.grep(* eq $language) == 0 {
         die "ERROR: $language is not an acceptable language";
     }
@@ -118,6 +118,6 @@ method wait(Int:D $try-count) {
     sleep(4 ** $try-count);
 }
 
-method validate-problem-number($problem-number) returns Bool { ... }
+method validate-problem-number($problem-number --> Bool) { ... }
 
 method run { ... }
