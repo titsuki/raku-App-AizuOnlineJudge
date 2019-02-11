@@ -30,7 +30,7 @@ submethod BUILD(Str :$!code, Cool :$!problem-number, Str :$!user, Str :$!languag
     );
 }
 
-method run() {
+method run {
     my Str $token = self.post-code(:%!form);
     self.ask-result($token).say;
 }

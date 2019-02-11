@@ -120,4 +120,4 @@ method wait(Int:D $try-count) {
 
 method validate-problem-number($problem-number) returns Bool { ... }
 
-method run() { ... }
+method run { ... }

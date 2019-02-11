@@ -32,7 +32,7 @@ submethod BUILD(:$!code, :$!problem-number, :$!user, :$!lesson-id, :$!language, 
         sourceCode => $!code.IO.slurp
     };
 }
-method run() {
+method run {
     my Str $token = self.post-code(:%!form);
     self.ask-result($token).say;
 }
