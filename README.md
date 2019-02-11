@@ -3,7 +3,7 @@
 NAME
 ====
 
-App::AizuOnlineJudge - a perl6 implementation of the unofficial code submitter for Aizu Online Judge( http://judge.u-aizu.ac.jp/onlinejudge/index.jsp ).
+App::AizuOnlineJudge - A Perl 6 implementation of the unofficial code submitter for Aizu Online Judge( http://judge.u-aizu.ac.jp/onlinejudge/index.jsp ).
 
 SYNOPSIS
 ========
@@ -14,7 +14,7 @@ SYNOPSIS
 DESCRIPTION
 ===========
 
-App::AizuOnlineJudge is a perl6 implementation of the unofficial code submitter for Aizu Online Judge( http://judge.u-aizu.ac.jp/onlinejudge/index.jsp ).
+App::AizuOnlineJudge is a Perl 6 implementation of the unofficial code submitter for Aizu Online Judge( http://judge.u-aizu.ac.jp/onlinejudge/index.jsp ).
 
 AUTHOR
 ======

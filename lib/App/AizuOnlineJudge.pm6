@@ -6,7 +6,7 @@ unit class App::AizuOnlineJudge:ver<0.0.1>;
 
 =head1 NAME
 
-App::AizuOnlineJudge - a perl6 implementation of the unofficial code submitter for Aizu Online Judge( http://judge.u-aizu.ac.jp/onlinejudge/index.jsp ).
+App::AizuOnlineJudge - A Perl 6 implementation of the unofficial code submitter for Aizu Online Judge( http://judge.u-aizu.ac.jp/onlinejudge/index.jsp ).
 
 =head1 SYNOPSIS
 
@@ -15,7 +15,7 @@ App::AizuOnlineJudge - a perl6 implementation of the unofficial code submitter f
 
 =head1 DESCRIPTION
 
-App::AizuOnlineJudge is a perl6 implementation of the unofficial code submitter for Aizu Online Judge( http://judge.u-aizu.ac.jp/onlinejudge/index.jsp ).
+App::AizuOnlineJudge is a Perl 6 implementation of the unofficial code submitter for Aizu Online Judge( http://judge.u-aizu.ac.jp/onlinejudge/index.jsp ).
 
 =head1 AUTHOR
 
