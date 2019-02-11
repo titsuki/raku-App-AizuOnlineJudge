@@ -1,9 +1,6 @@
 use v6;
 use Terminal::Getpass;
 use Cro::HTTP::Client;
-use URI;
-use OO::Monitors;
-use MONKEY-TYPING;
 
 unit role App::AizuOnlineJudge::Submittable;
 
@@ -80,7 +77,7 @@ method post-code(:%form! --> Str) {
                                           },
                                        content-type => 'application/json',
                                       );
-    self.response-to-p6hash($response)<token>;
+    %(self.response-to-p6($response))<token>;
 }
 
 method get-password(Bool :$mockable = False, Str :$mockpass = "mockpass" --> Str) {
@@ -105,7 +102,7 @@ method validate-language(Str $language --> Bool) {
     True;
 }
 
-method response-to-p6hash(Cro::HTTP::Response $response --> Hash) {
+method response-to-p6(Cro::HTTP::Response $response) {
     if $response.status != 200 {
         die "ERROR: Failed in sending your code.";
     }
@@ -119,5 +116,33 @@ method wait(Int:D $try-count) {
 }
 
 method validate-problem-number($problem-number --> Bool) { ... }
+
+method ask-result($token --> Str) {
+    my Bool $success = False;
+    loop (my $try-count = 1; $try-count <= 5; $try-count++) {
+        self.wait($try-count);
+        my $response = await $!client.get('/submission_records/recent');
+        my $recent-post = self.response-to-p6($response);
+        my %latest = self.get-latest-by-token($recent-post, $token);
+        return sprintf("%s %.2f sec", [%latest<status>, %latest<cputime> / 100]);
+    }
+
+    if not $success {
+        die "ERROR: Timeout";
+    }
+}
+
+method get-latest-by-token($recent-post, Str:D $token --> Hash) {
+    use JSON::Fast;
+
+    my %latest;
+    my @status-list = <CompileError WrongAnswer TimeLimitExceeded MemoryLimitExceeded Accepted OutputLimitExceeded RuntimeError PresentationError>;
+    my %row = @($recent-post).grep({ .<token> eq $token }).head;
+
+    %latest<submission-date> = $%row<submissionDate>;
+    %latest<status> = @status-list[%row<status>];
+    %latest<cputime> = %row<cpuTime>;
+    return %latest;
+}
 
 method run { ... }
