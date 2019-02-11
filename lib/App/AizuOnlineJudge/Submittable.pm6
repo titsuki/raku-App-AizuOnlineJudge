@@ -1,9 +1,6 @@
 use v6;
 use Terminal::Getpass;
 use Cro::HTTP::Client;
-use URI;
-use OO::Monitors;
-use MONKEY-TYPING;
 
 unit role App::AizuOnlineJudge::Submittable;
 
