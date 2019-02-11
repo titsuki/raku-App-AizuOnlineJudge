@@ -19,26 +19,6 @@ use App::AizuOnlineJudge::Submittable;
 }
 
 {
-    my $mock-response
-    = class {
-	method content() { "<META HTTP-EQUIV=\"refresh\" CONTENT=\"0 ; URL=http://27.110.2.32/onlinejudge/status.html\">\n" }
-	method is-success() { True }
-    };
-    my $submittable = class { also does App::AizuOnlineJudge::Submittable; method validate-problem-number($problem-number) {}; method run() {}; };
-    is $submittable.validate-response($mock-response), True;
-}
-
-{
-    my $mock-response
-    = class {
-	method content() { "<font color=#ff000F><b>\nUserID or Password is Wrong.\n</b></font>\n<result><succeeded>false</succeeded><message>Invalid user</message></result>\n" }
-	method is-success() { True }
-    };
-    my $submittable = class { also does App::AizuOnlineJudge::Submittable; method validate-problem-number($problem-number) {}; method run() {}; };
-    dies-ok { $submittable.validate-response($mock-response) };
-}
-
-{
     my $submittable = class { also does App::AizuOnlineJudge::Submittable; method validate-problem-number($problem-number) {}; method run() {}; };
     dies-ok { $submittable.validate-language("LOLCODE") };
     dies-ok { $submittable.validate-language("RPG") };

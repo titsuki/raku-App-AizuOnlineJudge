@@ -21,7 +21,7 @@ submethod BUILD(:$!code, :$!problem-number, :$!user, :$!lesson-id, :$!language, 
     self.validate-code($!code);
     self.validate-language($!language);
     self.validate-problem-number($!problem-number);
-    self.login(user => $!user, password => self.get-password(:$mockable));
+    self.login(user => $!user, password => self.get-password(:$mockable)) unless $mockable;
     $!ua = HTTP::UserAgent.new;
     $!activity-uri = URI.new("https://judgeapi.u-aizu.ac.jp/submission_records/recent");
 
