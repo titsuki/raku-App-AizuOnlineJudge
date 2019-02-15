@@ -1,6 +1,7 @@
 {
+  "auth" : "cpan:TITSUKI",
   "authors" : [
-    "titsuki"
+    "Itsuki Toyota"
   ],
   "build-depends" : [ ],
   "depends" : [
