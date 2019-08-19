@@ -1,6 +1,7 @@
 use v6;
 use Terminal::Getpass;
 use Cro::HTTP::Client;
+use Cro::HTTP::Cookie;
 
 unit role App::AizuOnlineJudge::Submittable;
 
@@ -65,7 +66,7 @@ method login(Str :$user!, Str :$password! --> Bool) {
             token cookie-av:sym<httponly>  { :i 'HttpOnly' }
             token cookie-av:sym<extension> { :i <path> }
         }
-        $!cookie = MyCookieString.parse($cookie-value, :actions(CookieBuilder.new)).made;
+        $!cookie = MyCookieString.parse($cookie-value, :actions(Cro::HTTP::CookieBuilder.new)).made;
     }
     $response.status == 200;
 }
