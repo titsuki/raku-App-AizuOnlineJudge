@@ -1,6 +1,7 @@
 Revision history for App-AizuOnlineJudge
 
 {{$NEXT}}
+    - Fix compatibility with cro 0.8
 
 0.0.2  2019-02-15T22:34:59+09:00
     - Fix auth, authors fields [01033]
