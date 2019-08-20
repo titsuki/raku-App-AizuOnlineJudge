@@ -1,8 +1,6 @@
 Revision history for App-AizuOnlineJudge
 
 {{$NEXT}}
-
-0.0.3  2019-08-19T11:11:00+01:00
     - Fix compatibility with cro 0.8
 
 0.0.2  2019-02-15T22:34:59+09:00
