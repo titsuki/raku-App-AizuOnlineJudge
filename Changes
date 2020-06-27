@@ -2,6 +2,9 @@ Revision history for App-AizuOnlineJudge
 
 {{$NEXT}}
 
+0.0.4  2020-06-28T00:45:28+09:00
+    - Replace Perl6 with Raku
+
 0.0.3  2019-08-20T21:36:34+09:00
     - Fix compatibility with cro 0.8
 

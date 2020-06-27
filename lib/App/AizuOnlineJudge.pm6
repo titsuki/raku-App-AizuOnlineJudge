@@ -1,5 +1,5 @@
 use v6;
-unit class App::AizuOnlineJudge:ver<0.0.3>;
+unit class App::AizuOnlineJudge:ver<0.0.4>;
 
 
 =begin pod
