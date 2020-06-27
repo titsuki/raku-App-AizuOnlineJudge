@@ -78,7 +78,7 @@ method post-code(:%form! --> Str) {
                                           },
                                        content-type => 'application/json',
                                       );
-    %(self.response-to-p6($response))<token>;
+    %(self.response-to-raku($response))<token>;
 }
 
 method get-password(Bool :$mockable = False, Str :$mockpass = "mockpass" --> Str) {
@@ -103,7 +103,7 @@ method validate-language(Str $language --> Bool) {
     True;
 }
 
-method response-to-p6(Cro::HTTP::Response $response) {
+method response-to-raku(Cro::HTTP::Response $response) {
     if $response.status != 200 {
         die "ERROR: Failed in sending your code.";
     }
@@ -123,7 +123,7 @@ method ask-result($token --> Str) {
     loop (my $try-count = 1; $try-count <= 5; $try-count++) {
         self.wait($try-count);
         my $response = await $!client.get('/submission_records/recent');
-        my $recent-post = self.response-to-p6($response);
+        my $recent-post = self.response-to-raku($response);
         my %latest = self.get-latest-by-token($recent-post, $token);
         return sprintf("%s %.2f sec", [%latest<status>, %latest<cputime> / 100]);
     }

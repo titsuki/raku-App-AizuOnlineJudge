@@ -1,9 +1,9 @@
-[![Build Status](https://travis-ci.org/titsuki/p6-App-AizuOnlineJudge.svg?branch=master)](https://travis-ci.org/titsuki/p6-App-AizuOnlineJudge)
+[![Build Status](https://travis-ci.org/titsuki/raku-App-AizuOnlineJudge.svg?branch=master)](https://travis-ci.org/titsuki/raku-App-AizuOnlineJudge)
 
 NAME
 ====
 
-App::AizuOnlineJudge - A Perl 6 implementation of the unofficial code submitter for Aizu Online Judge( http://judge.u-aizu.ac.jp/onlinejudge/index.jsp ).
+App::AizuOnlineJudge - A Raku implementation of the unofficial code submitter for Aizu Online Judge( http://judge.u-aizu.ac.jp/onlinejudge/index.jsp ).
 
 SYNOPSIS
 ========
@@ -14,7 +14,7 @@ SYNOPSIS
 DESCRIPTION
 ===========
 
-App::AizuOnlineJudge is a Perl 6 implementation of the unofficial code submitter for Aizu Online Judge( http://judge.u-aizu.ac.jp/onlinejudge/index.jsp ).
+App::AizuOnlineJudge is a Raku implementation of the unofficial code submitter for Aizu Online Judge( http://judge.u-aizu.ac.jp/onlinejudge/index.jsp ).
 
 AUTHOR
 ======

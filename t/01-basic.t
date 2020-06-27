@@ -6,16 +6,16 @@ use App::AizuOnlineJudge::IntroductionCourse;
 use App::AizuOnlineJudge::Submittable;
 
 {
-    dies-ok { my $aoj = App::AizuOnlineJudge::IntroductionCourse.new(code => "t/I.found.that.perl6.is.fun", problem-number => "A", user => "perl6isfun", language => "C++", lesson-id => "ITP1_1", mockable => True); }
-    dies-ok { my $aoj = App::AizuOnlineJudge::BasicCourse.new(code => "t/I.found.that.perl6.is.fun", problem-number => "0000", user => "perl6isfun", language => "C++", mockable => True); }
+    dies-ok { my $aoj = App::AizuOnlineJudge::IntroductionCourse.new(code => "t/I.found.that.raku.is.fun", problem-number => "A", user => "rakuisfun", language => "C++", lesson-id => "ITP1_1", mockable => True); }
+    dies-ok { my $aoj = App::AizuOnlineJudge::BasicCourse.new(code => "t/I.found.that.raku.is.fun", problem-number => "0000", user => "rakuisfun", language => "C++", mockable => True); }
 }
 
 {
-    lives-ok { my $aoj = App::AizuOnlineJudge::IntroductionCourse.new(code => "t/empty.cpp", problem-number => "A", user => "perl6isfun", language => "C++", lesson-id => "ITP1_1", mockable => True); }
+    lives-ok { my $aoj = App::AizuOnlineJudge::IntroductionCourse.new(code => "t/empty.cpp", problem-number => "A", user => "rakuisfun", language => "C++", lesson-id => "ITP1_1", mockable => True); }
 }
 
 {
-    lives-ok { my $aoj = App::AizuOnlineJudge::BasicCourse.new(code => "t/empty.cpp", problem-number => "0000", user => "perl6isfun", language => "C++", mockable => True); }
+    lives-ok { my $aoj = App::AizuOnlineJudge::BasicCourse.new(code => "t/empty.cpp", problem-number => "0000", user => "rakuisfun", language => "C++", mockable => True); }
 }
 
 {
@@ -32,7 +32,7 @@ use App::AizuOnlineJudge::Submittable;
 
 {
     my $aoj;
-    lives-ok { $aoj = App::AizuOnlineJudge::BasicCourse.new(code => "t/empty.cpp", problem-number => "0000", user => "perl6isfun", language => "C++", mockable => True); }
+    lives-ok { $aoj = App::AizuOnlineJudge::BasicCourse.new(code => "t/empty.cpp", problem-number => "0000", user => "rakuisfun", language => "C++", mockable => True); }
     dies-ok { $aoj.validate-problem-number("10000"); }
     dies-ok { $aoj.validate-problem-number("100"); }
     dies-ok { $aoj.validate-problem-number("A"); }
@@ -41,7 +41,7 @@ use App::AizuOnlineJudge::Submittable;
 
 {
     my $aoj;
-    lives-ok { $aoj = App::AizuOnlineJudge::IntroductionCourse.new(code => "t/empty.cpp", problem-number => "A", user => "perl6isfun", language => "C++", lesson-id => "ITP1_1", mockable => True); }
+    lives-ok { $aoj = App::AizuOnlineJudge::IntroductionCourse.new(code => "t/empty.cpp", problem-number => "A", user => "rakuisfun", language => "C++", lesson-id => "ITP1_1", mockable => True); }
     dies-ok { $aoj.validate-problem-number("10000"); }
     dies-ok { $aoj.validate-problem-number("100"); }
     dies-ok { $aoj.validate-problem-number("1000"); }
