@@ -62,8 +62,9 @@ method validate-code(Str $code --> Bool) {
 }
 
 method validate-language(Str $language --> Bool) {
-    if <C C++ C++11 C# D Ruby Python Python3 PHP JavaScript Scala Haskell OCaml>.grep(* eq $language) == 0 {
-        die "ERROR: $language is not an acceptable language";
+    my @acceptable-langs = <C C++ JAVA C++11 C++14 C# D Ruby Python Python3 PHP JavaScript Scala Haskell OCaml Rust Go Kotlin>;
+    if @acceptable-langs.grep(* eq $language) == 0 {
+        die "ERROR: $language is not an acceptable language. Acceptable languages are:\n { @acceptable-langs.join(", ") }";
     }
     True;
 }
