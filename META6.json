@@ -5,7 +5,7 @@
   ],
   "build-depends" : [ ],
   "depends" : [
-    "Cro::HTTP",
+    "Cro::HTTP:ver<0.8.3+>",
     "Terminal::Getpass"
   ],
   "description" : "A Raku implementation of the unofficial code submitter for Aizu Online Judge( http://judge.u-aizu.ac.jp/onlinejudge/index.jsp ).",
