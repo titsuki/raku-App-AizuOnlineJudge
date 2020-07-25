@@ -1,7 +1,7 @@
 use v6;
 use App::AizuOnlineJudge::Submittable;
 
-unit class App::AizuOnlineJudge::BasicCourse:ver<0.0.4>;
+unit class App::AizuOnlineJudge::BasicCourse:ver<0.0.5>;
 also does App::AizuOnlineJudge::Submittable;
 
 has $.code;
