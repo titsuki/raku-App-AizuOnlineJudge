@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.com/titsuki/raku-App-AizuOnlineJudge.svg?branch=master)](https://travis-ci.com/titsuki/raku-App-AizuOnlineJudge)
+[![Actions Status](https://github.com/titsuki/raku-App-AizuOnlineJudge/actions/workflows/test.yml/badge.svg)](https://github.com/titsuki/raku-App-AizuOnlineJudge/actions)
 
 NAME
 ====
