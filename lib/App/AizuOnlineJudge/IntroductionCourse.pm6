@@ -1,7 +1,7 @@
 use v6;
 use App::AizuOnlineJudge::Submittable;
 
-unit class App::AizuOnlineJudge::IntroductionCourse:ver<0.0.5>:auth<zef:titsuki>;
+unit class App::AizuOnlineJudge::IntroductionCourse:ver<0.0.6>:auth<zef:titsuki>;
 also does App::AizuOnlineJudge::Submittable;
 
 has $.code;
