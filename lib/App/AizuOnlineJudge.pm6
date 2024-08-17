@@ -1,5 +1,5 @@
 use v6;
-unit class App::AizuOnlineJudge:ver<0.0.5>;
+unit class App::AizuOnlineJudge:ver<0.0.5>:auth<zef:titsuki>;
 
 
 =begin pod

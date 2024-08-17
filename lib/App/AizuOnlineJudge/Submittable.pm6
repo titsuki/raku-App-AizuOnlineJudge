@@ -3,7 +3,7 @@ use Terminal::Getpass;
 use Cro::HTTP::Client;
 use Cro::HTTP::Cookie;
 
-unit role App::AizuOnlineJudge::Submittable;
+unit role App::AizuOnlineJudge::Submittable:auth<zef:titsuki>;
 
 has Cro::HTTP::Cookie $!cookie;
 has Cro::HTTP::Client $!client;
